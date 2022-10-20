@@ -9,7 +9,7 @@
 		"type": "MySqlTable",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "`appointments1234`"
+			"tableName": "`districts`"
 		}
 	}
 }
