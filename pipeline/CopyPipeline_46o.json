@@ -1,0 +1,5706 @@
+{
+	"name": "CopyPipeline_46o",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_46o",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_46o",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.tableName}"
+								},
+								{
+									"name": "Destination",
+									"value": ".@{item().destination.table}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "MySqlSource"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false,
+								"translator": {
+									"value": "@item().copyActivity.translator",
+									"type": "Expression"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_46o",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_tableName": "@item().source.tableName"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_46o",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().destination.table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"tableName": "`appointments1234`"
+						},
+						"destination": {
+							"table": "`appointments1234`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "priority",
+											"type": "String"
+										},
+										"sink": {
+											"name": "priority",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reason",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reason",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "requestedSpeciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "requestedSpeciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "communicationChannel",
+											"type": "String"
+										},
+										"sink": {
+											"name": "communicationChannel",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "scheduledAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "scheduledAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookingType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookingType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "casesheetId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "casesheetId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "videoCallInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "videoCallInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctorId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctorId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "speciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "speciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "registrationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "registrationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qualification",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qualification",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appointmentId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appointmentId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appointmentDisplayId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appointmentDisplayId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultationMethod",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultationMethod",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultCategory",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultCategory",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "paramedicId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "paramedicId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "expectedConsultationTime",
+											"type": "String"
+										},
+										"sink": {
+											"name": "expectedConsultationTime",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookedById",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookedById",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "confirmedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "confirmedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "confirmedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "confirmedBy",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`appointments1`"
+						},
+						"destination": {
+							"table": "`appointments1`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "priority",
+											"type": "String"
+										},
+										"sink": {
+											"name": "priority",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reason",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reason",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "requestedSpeciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "requestedSpeciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "communicationChannel",
+											"type": "String"
+										},
+										"sink": {
+											"name": "communicationChannel",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "scheduledAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "scheduledAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookingType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookingType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "casesheetId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "casesheetId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "videoCallInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "videoCallInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctorInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctorInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctorId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctorId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "speciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "speciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "registrationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "registrationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qualification",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qualification",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "paramedicInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "paramedicInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appointmentId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appointmentId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "metaInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "metaInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appId",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`appointments`"
+						},
+						"destination": {
+							"table": "`appointments`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "priority",
+											"type": "String"
+										},
+										"sink": {
+											"name": "priority",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reason",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reason",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "requestedSpeciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "requestedSpeciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "communicationChannel",
+											"type": "String"
+										},
+										"sink": {
+											"name": "communicationChannel",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "scheduledAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "scheduledAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bookingType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bookingType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "casesheetId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "casesheetId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "videoCallInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "videoCallInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctorInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctorInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctorId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctorId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "speciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "speciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "registrationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "registrationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qualification",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qualification",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "paramedicInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "paramedicInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appointmentId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appointmentId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "metaInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "metaInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appId",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`districts`"
+						},
+						"destination": {
+							"table": "`districts`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "author",
+											"type": "String"
+										},
+										"sink": {
+											"name": "author",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "author_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "author_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "country",
+											"type": "String"
+										},
+										"sink": {
+											"name": "country",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isActive",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isActive",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "state_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "state_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "title",
+											"type": "String"
+										},
+										"sink": {
+											"name": "title",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`doctors`"
+						},
+						"destination": {
+							"table": "`doctors`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctorId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctorId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "designation",
+											"type": "String"
+										},
+										"sink": {
+											"name": "designation",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "email",
+											"type": "String"
+										},
+										"sink": {
+											"name": "email",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "empId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "empId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "fullName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "fullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "phoneNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "phoneNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qualification",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qualification",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "registrationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "registrationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "speciality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "speciality",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "emailVerified",
+											"type": "String"
+										},
+										"sink": {
+											"name": "emailVerified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "gender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "gender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "languages",
+											"type": "String"
+										},
+										"sink": {
+											"name": "languages",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "roles",
+											"type": "String"
+										},
+										"sink": {
+											"name": "roles",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`facilities`"
+						},
+						"destination": {
+							"table": "`facilities`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "changeLog",
+											"type": "String"
+										},
+										"sink": {
+											"name": "changeLog",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "contactInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "contactInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "districtId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "districtId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "availableLabTests",
+											"type": "String"
+										},
+										"sink": {
+											"name": "availableLabTests",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "availableMedicines",
+											"type": "String"
+										},
+										"sink": {
+											"name": "availableMedicines",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "labConfig",
+											"type": "String"
+										},
+										"sink": {
+											"name": "labConfig",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientRegistrationConfig",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientRegistrationConfig",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "kioskBillingConfig",
+											"type": "String"
+										},
+										"sink": {
+											"name": "kioskBillingConfig",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "metaInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "metaInfo",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`imgupload`"
+						},
+						"destination": {
+							"table": "`imgupload`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "sno",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "sno",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "districtid",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "districtid",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "centerid",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerid",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "event_title",
+											"type": "String"
+										},
+										"sink": {
+											"name": "event_title",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "event_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "event_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "event_description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "event_description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "event_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "event_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "upload_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "upload_date",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "upload_path",
+											"type": "String"
+										},
+										"sink": {
+											"name": "upload_path",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "noofphotos",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "noofphotos",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "noofpeopelattended",
+											"type": "String"
+										},
+										"sink": {
+											"name": "noofpeopelattended",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "status",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "created_by",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "created_by",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "created_on",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "created_on",
+											"type": "DateTime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`info_lims_today`"
+						},
+						"destination": {
+							"table": "`info_lims_today`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "center_id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "center_id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "consultation_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultation_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctor_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctor_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patient_uhid",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patient_uhid",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patient_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patient_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "test_created_on",
+											"type": "String"
+										},
+										"sink": {
+											"name": "test_created_on",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "test_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "test_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "test_group",
+											"type": "String"
+										},
+										"sink": {
+											"name": "test_group",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "test_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "test_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "statusLog",
+											"type": "String"
+										},
+										"sink": {
+											"name": "statusLog",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reports",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reports",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_sample_collected",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_sample_collected",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_emergency",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_emergency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sample_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sample_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_sample_damaged",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_sample_damaged",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_resamples_collected",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_resamples_collected",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_reports_done",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_reports_done",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampled_collected_on",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampled_collected_on",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "labtechnician_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "labtechnician_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "labtechnician_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "labtechnician_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reports_uploaded_time",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reports_uploaded_time",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_reports_authenticated",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_reports_authenticated",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reports_authenticated_by",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reports_authenticated_by",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reports_authenticated_person_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reports_authenticated_person_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "reports_authenticated_time",
+											"type": "String"
+										},
+										"sink": {
+											"name": "reports_authenticated_time",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "application_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "application_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "redo_comments",
+											"type": "String"
+										},
+										"sink": {
+											"name": "redo_comments",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "is_redo_test",
+											"type": "String"
+										},
+										"sink": {
+											"name": "is_redo_test",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "redo_test_on",
+											"type": "String"
+										},
+										"sink": {
+											"name": "redo_test_on",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "report_code",
+											"type": "String"
+										},
+										"sink": {
+											"name": "report_code",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "report_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "report_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "uploaded_files",
+											"type": "String"
+										},
+										"sink": {
+											"name": "uploaded_files",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "total_uploaded_files",
+											"type": "String"
+										},
+										"sink": {
+											"name": "total_uploaded_files",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "unix_updatedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "unix_updatedOn",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`info_lis`"
+						},
+						"destination": {
+							"table": "`info_lis`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "investigationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "investigationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientUHID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientUHID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientAge",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientAge",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientGender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientGender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientMobile",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientMobile",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "application_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "application_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "lisInvstId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "lisInvstId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isSampleCollected",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isSampleCollected",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleCollectedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleCollectedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isreportsAuthentication",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isreportsAuthentication",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isResultCaptured",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isResultCaptured",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedPerson",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedPerson",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColQty",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColQty",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColUnits",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColUnits",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testMethod",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testMethod",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "parameter",
+											"type": "String"
+										},
+										"sink": {
+											"name": "parameter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultValue",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultValue",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "units",
+											"type": "String"
+										},
+										"sink": {
+											"name": "units",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "loincCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "loincCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ResultStatus",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ResultStatus",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TATA_HOURS",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "TATA_HOURS",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "TAT GROUP",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TAT GROUP",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TotalRedos",
+											"type": "Int64"
+										},
+										"sink": {
+											"name": "TotalRedos",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "projectName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "projectName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "districtName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "districtName",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`info_ncd`"
+						},
+						"destination": {
+							"table": "`info_ncd`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "createdDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "createdDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "Centre",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Centre",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "noofBeneficiaries",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "noofBeneficiaries",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`info_outreach`"
+						},
+						"destination": {
+							"table": "`info_outreach`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "createdDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "createdDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "camps",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "camps",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "noofBeneficiaries",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "noofBeneficiaries",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`info_she`"
+						},
+						"destination": {
+							"table": "`info_she`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "createdDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "createdDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "camps",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "camps",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "noofBeneficiaries",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "noofBeneficiaries",
+											"type": "Int32"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`lab_investigations`"
+						},
+						"destination": {
+							"table": "`lab_investigations`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "author",
+											"type": "String"
+										},
+										"sink": {
+											"name": "author",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColQty",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColQty",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColUnits",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColUnits",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testParameters",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testParameters",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isSampleRequired",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isSampleRequired",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isClinicalTest",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isClinicalTest",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isActive",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isActive",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcConfig",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcConfig",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcEnable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcEnable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consumption",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consumption",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sourceInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sourceInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleTypeName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleTypeName",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`lab_tests_new`"
+						},
+						"destination": {
+							"table": "`lab_tests_new`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "investigationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "investigationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientUHID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientUHID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientAge",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientAge",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientGender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientGender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientMobile",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientMobile",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "application_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "application_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isPathologist",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isPathologist",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isQmAvailable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isQmAvailable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isQhAvailable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isQhAvailable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "lisInvstId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "lisInvstId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcEnable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcEnable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isreportsAuthentication",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isreportsAuthentication",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedPerson",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedPerson",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isreportsValidated",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isreportsValidated",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isVerified",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isVerified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verificationRemarks",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verificationRemarks",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verifiedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verifiedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verifiedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verifiedPerson",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verifiedPerson",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColQty",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColQty",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColUnits",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColUnits",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "calibrationCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "calibrationCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "labTechnician",
+											"type": "String"
+										},
+										"sink": {
+											"name": "labTechnician",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "uploadedFiles",
+											"type": "String"
+										},
+										"sink": {
+											"name": "uploadedFiles",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "display",
+											"type": "String"
+										},
+										"sink": {
+											"name": "display",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "parameter",
+											"type": "String"
+										},
+										"sink": {
+											"name": "parameter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testMethod",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testMethod",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "gender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "gender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_age",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_age",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_age",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_age",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "age_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "age_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultValue",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultValue",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_possible_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_possible_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_possible_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_possible_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "units",
+											"type": "String"
+										},
+										"sink": {
+											"name": "units",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "loincCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "loincCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "report_status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "report_status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcConfig",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcConfig",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "rangeValidations",
+											"type": "String"
+										},
+										"sink": {
+											"name": "rangeValidations",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultStatus",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultStatus",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "abnormalReports",
+											"type": "String"
+										},
+										"sink": {
+											"name": "abnormalReports",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isSampleCollectionRequired",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isSampleCollectionRequired",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isSampleCollected",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isSampleCollected",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "accessionNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "accessionNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleCollectedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleCollectedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleRemarks",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleRemarks",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isResultCaptured",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isResultCaptured",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultCaptureComments",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultCaptureComments",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`lab_tests`"
+						},
+						"destination": {
+							"table": "`lab_tests`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "investigationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "investigationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientUHID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientUHID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientAge",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientAge",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientGender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientGender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientMobile",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientMobile",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "application_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "application_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isPathologist",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isPathologist",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isQmAvailable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isQmAvailable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isQhAvailable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isQhAvailable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "lisInvstId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "lisInvstId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcEnable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcEnable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isreportsAuthentication",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isreportsAuthentication",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "authenticatedPerson",
+											"type": "String"
+										},
+										"sink": {
+											"name": "authenticatedPerson",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isreportsValidated",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isreportsValidated",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isVerified",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isVerified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verificationRemarks",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verificationRemarks",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verifiedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verifiedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verifiedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verifiedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "verifiedPerson",
+											"type": "String"
+										},
+										"sink": {
+											"name": "verifiedPerson",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColQty",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColQty",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleColUnits",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleColUnits",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "calibrationCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "calibrationCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "labTechnician",
+											"type": "String"
+										},
+										"sink": {
+											"name": "labTechnician",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "uploadedFiles",
+											"type": "String"
+										},
+										"sink": {
+											"name": "uploadedFiles",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "display",
+											"type": "String"
+										},
+										"sink": {
+											"name": "display",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "parameter",
+											"type": "String"
+										},
+										"sink": {
+											"name": "parameter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testMethod",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testMethod",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "gender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "gender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_age",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_age",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_age",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_age",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "age_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "age_type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultValue",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultValue",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_possible_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_possible_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_possible_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_possible_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "units",
+											"type": "String"
+										},
+										"sink": {
+											"name": "units",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "loincCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "loincCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "report_status",
+											"type": "String"
+										},
+										"sink": {
+											"name": "report_status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcConfig",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcConfig",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "rangeValidations",
+											"type": "String"
+										},
+										"sink": {
+											"name": "rangeValidations",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultStatus",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultStatus",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "abnormalReports",
+											"type": "String"
+										},
+										"sink": {
+											"name": "abnormalReports",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isSampleCollectionRequired",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isSampleCollectionRequired",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isSampleCollected",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isSampleCollected",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "accessionNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "accessionNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleCollectedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleCollectedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sampleRemarks",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sampleRemarks",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isResultCaptured",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isResultCaptured",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultCaptureComments",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultCaptureComments",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`lis_abnormal_reports`"
+						},
+						"destination": {
+							"table": "`lis_abnormal_reports`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "investigationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "investigationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientUHID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientUHID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "testName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "testName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "lis_parameter",
+											"type": "String"
+										},
+										"sink": {
+											"name": "lis_parameter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isRedoTest",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isRedoTest",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "redoComments",
+											"type": "String"
+										},
+										"sink": {
+											"name": "redoComments",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "redoTestOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "redoTestOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "author",
+											"type": "String"
+										},
+										"sink": {
+											"name": "author",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "parameter",
+											"type": "String"
+										},
+										"sink": {
+											"name": "parameter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "loincCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "loincCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultValue",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultValue",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "units",
+											"type": "String"
+										},
+										"sink": {
+											"name": "units",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "remarks",
+											"type": "String"
+										},
+										"sink": {
+											"name": "remarks",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										},
+										"sink": {
+											"name": "resultCapturedOn",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "qcEnable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "qcEnable",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "min_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "min_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "max_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "max_value",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "rangeValidations",
+											"type": "String"
+										},
+										"sink": {
+											"name": "rangeValidations",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`medecasesheet_new`"
+						},
+						"destination": {
+							"table": "`medecasesheet_new`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientUID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientUID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "timestamp",
+											"type": "String"
+										},
+										"sink": {
+											"name": "timestamp",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "metaInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "metaInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sourceInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sourceInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "casesheetId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "casesheetId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "diagnosis",
+											"type": "String"
+										},
+										"sink": {
+											"name": "diagnosis",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "diagnosticTests",
+											"type": "String"
+										},
+										"sink": {
+											"name": "diagnosticTests",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "advice",
+											"type": "String"
+										},
+										"sink": {
+											"name": "advice",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "review",
+											"type": "String"
+										},
+										"sink": {
+											"name": "review",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "referral",
+											"type": "String"
+										},
+										"sink": {
+											"name": "referral",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "diagnosisType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "diagnosisType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "conceptId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "conceptId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "descriptionId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "descriptionId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "icdCode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "icdCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "snomedTerm",
+											"type": "String"
+										},
+										"sink": {
+											"name": "snomedTerm",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`medecasesheet`"
+						},
+						"destination": {
+							"table": "`medecasesheet`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientUID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientUID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "timestamp",
+											"type": "String"
+										},
+										"sink": {
+											"name": "timestamp",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "metaInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "metaInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "sourceInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "sourceInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "casesheetId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "casesheetId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "diagnosis",
+											"type": "String"
+										},
+										"sink": {
+											"name": "diagnosis",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "diagnosticTests",
+											"type": "String"
+										},
+										"sink": {
+											"name": "diagnosticTests",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "advice",
+											"type": "String"
+										},
+										"sink": {
+											"name": "advice",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "review",
+											"type": "String"
+										},
+										"sink": {
+											"name": "review",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "referral",
+											"type": "String"
+										},
+										"sink": {
+											"name": "referral",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "symptoms",
+											"type": "String"
+										},
+										"sink": {
+											"name": "symptoms",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`pharmacy_dispenses`"
+						},
+						"destination": {
+							"table": "`pharmacy_dispenses`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isDispensed",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isDispensed",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isActive",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isActive",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "doctor",
+											"type": "String"
+										},
+										"sink": {
+											"name": "doctor",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "author",
+											"type": "String"
+										},
+										"sink": {
+											"name": "author",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "patientId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "patientId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "medicines",
+											"type": "String"
+										},
+										"sink": {
+											"name": "medicines",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "consultationId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "consultationId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isFeedBackGiven",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isFeedBackGiven",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "caseSheetCloseTime",
+											"type": "String"
+										},
+										"sink": {
+											"name": "caseSheetCloseTime",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "userFeedBack",
+											"type": "String"
+										},
+										"sink": {
+											"name": "userFeedBack",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "centerId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "centerId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "application_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "application_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updated",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updated",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "dispensedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "dispensedAt",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`sales_table`"
+						},
+						"destination": {
+							"table": "`sales_table`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Employee_Name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Employee_Name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Year",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "Country",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Country",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Product",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Sale",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "Sale",
+											"type": "Decimal"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`users`"
+						},
+						"destination": {
+							"table": "`users`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appUserId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appUserId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "medexUID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "medexUID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "prismUHID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "prismUHID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "migratedFrom",
+											"type": "String"
+										},
+										"sink": {
+											"name": "migratedFrom",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "title",
+											"type": "String"
+										},
+										"sink": {
+											"name": "title",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "mobileNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "mobileNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "altMobileNumber",
+											"type": "String"
+										},
+										"sink": {
+											"name": "altMobileNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "firstName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "firstName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "lastName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "lastName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "middleName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "middleName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "age",
+											"type": "String"
+										},
+										"sink": {
+											"name": "age",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "dobInEpoch",
+											"type": "String"
+										},
+										"sink": {
+											"name": "dobInEpoch",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "gender",
+											"type": "String"
+										},
+										"sink": {
+											"name": "gender",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "dob",
+											"type": "String"
+										},
+										"sink": {
+											"name": "dob",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "city",
+											"type": "String"
+										},
+										"sink": {
+											"name": "city",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "zipcode",
+											"type": "String"
+										},
+										"sink": {
+											"name": "zipcode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "heightInCm",
+											"type": "String"
+										},
+										"sink": {
+											"name": "heightInCm",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "weightInKg",
+											"type": "String"
+										},
+										"sink": {
+											"name": "weightInKg",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bloodGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bloodGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "personalInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "personalInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "citizenship",
+											"type": "String"
+										},
+										"sink": {
+											"name": "citizenship",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "incomeGroup",
+											"type": "String"
+										},
+										"sink": {
+											"name": "incomeGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "identificationDetails",
+											"type": "String"
+										},
+										"sink": {
+											"name": "identificationDetails",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "temporaryAddress",
+											"type": "String"
+										},
+										"sink": {
+											"name": "temporaryAddress",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "isCurrentAddressPermanent",
+											"type": "String"
+										},
+										"sink": {
+											"name": "isCurrentAddressPermanent",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "permanentAddress",
+											"type": "String"
+										},
+										"sink": {
+											"name": "permanentAddress",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "priorityCase",
+											"type": "String"
+										},
+										"sink": {
+											"name": "priorityCase",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "registeredAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "registeredAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "facilityName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "facilityName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "communication",
+											"type": "String"
+										},
+										"sink": {
+											"name": "communication",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "createdBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "createdBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedAt",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedAt",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "updatedBy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "updatedBy",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "appUserDisplayId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "appUserDisplayId",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					},
+					{
+						"source": {
+							"tableName": "`vitals`"
+						},
+						"destination": {
+							"table": "`vitals`"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "_id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "medeUid",
+											"type": "String"
+										},
+										"sink": {
+											"name": "medeUid",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "readingId",
+											"type": "String"
+										},
+										"sink": {
+											"name": "readingId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "metaInfo",
+											"type": "String"
+										},
+										"sink": {
+											"name": "metaInfo",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "readingType",
+											"type": "String"
+										},
+										"sink": {
+											"name": "readingType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "pulse",
+											"type": "String"
+										},
+										"sink": {
+											"name": "pulse",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "spo2",
+											"type": "String"
+										},
+										"sink": {
+											"name": "spo2",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bloodPressure",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bloodPressure",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bloodSugar",
+											"type": "String"
+										},
+										"sink": {
+											"name": "bloodSugar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "temperature",
+											"type": "String"
+										},
+										"sink": {
+											"name": "temperature",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "body",
+											"type": "String"
+										},
+										"sink": {
+											"name": "body",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "respiratoryRate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "respiratoryRate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "timestamp",
+											"type": "String"
+										},
+										"sink": {
+											"name": "timestamp",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "symptoms",
+											"type": "String"
+										},
+										"sink": {
+											"name": "symptoms",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "documents",
+											"type": "String"
+										},
+										"sink": {
+											"name": "documents",
+											"type": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-19T10:02:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

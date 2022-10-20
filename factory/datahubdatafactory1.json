@@ -1,0 +1,9 @@
+{
+	"name": "datahubdatafactory1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a2782a0e-ccb5-4b4d-970d-cfe997fbac5f",
+		"tenantId": "fc195f95-bd25-46a2-a89d-b40284568dae"
+	}
+}
